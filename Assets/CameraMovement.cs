@@ -13,7 +13,7 @@ public class CameraMovement : MonoBehaviour
         player = GameObject.Find("Player").transform;
     }
 
-    void Update()
+    private void Update()
     {
         transform.position = player.position+offset;
     }
