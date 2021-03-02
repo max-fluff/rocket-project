@@ -1,107 +1,44 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerState : MonoBehaviour
+public abstract class PlayerState : MonoBehaviour
 {
-    private static float _landedPosTimer;
-    private static float _delay;
-    private static float _fuel;
-    private static bool _isGrounded;
-    private static bool _isLanded;
-    private static bool _isUndocked;
-    private static bool _isDoubleDocked;
-    private static Rigidbody _rb;
-    private static BoxCollider _coll;
-
-    private void Start()
-    {
-        _landedPosTimer = 3f;
-        _isUndocked = true;
-        _isDoubleDocked = gameObject.name == "PlayerDouble";
-        _rb = GetComponent<Rigidbody>();
-        _coll = GetComponent<BoxCollider>();
-        if(_isDoubleDocked)
-        {
-            _rb.mass = 2;
-            _fuel = 20;
-            _isUndocked = false;
-        }
-        else
-        {
-            Undock();
-            _fuel = 10;
-            GameObject.Find("Part").SetActive(false);
-        }
-        
-    }
+    public float LandedPosTimer { set; get; }
+    public float Delay { set; get; }
+    public float Fuel { set; get; }
+    public bool IsGrounded { set; get; }
+    public bool IsLanded { set; get; }
+    public bool IsUndocked { set; get; }
+    public Rigidbody RB { set; get; }
+    public BoxCollider Coll { set; get; }
+    public float Speed { set; get; }
+    public float Turn { set; get; }
     private void  Update()
     {
-        _isGrounded = Physics.Raycast(transform.position-(_isUndocked ? 0 : -2) * -transform.up, -transform.up,  1.1f);
-        if (_isLanded && _isGrounded)
-            _landedPosTimer -= Time.deltaTime;
+        IsGrounded = Physics.Raycast(transform.position-(IsUndocked ? 0 : -2) * -transform.up, -transform.up,  1.1f);
+        if (IsLanded && IsGrounded)
+            LandedPosTimer -= Time.deltaTime;
         else
-            _landedPosTimer = 3f;
-        if (_landedPosTimer <= 0)
+            LandedPosTimer = 3f;
+        if (LandedPosTimer <= 0)
         {
             Debug.Log("YouWin");
-            _landedPosTimer = 0;
+            LandedPosTimer = 0;
         }
         //Сделать обработчик сцен и отправить туда vvv
-        if (Input.GetKey("r"))
+        if (Input.GetButtonDown("Restart Level"))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
-    public static void Undock()
+    public void CountDelay(float time)
     {
-        _coll.size = PlayerCollision.GetUndockedSize();
-        _coll.center = PlayerCollision.GetUndockedCenter();
-        _rb.mass = 1;
-        _isUndocked = true;
-        PlayerMovement.SetTurn(90);
-        _delay = 0.8f;
+        Delay -= time;
     }
-
-    public static bool IsUndocked()
+    public void DrainFuel(float amount)
     {
-        return _isUndocked;
+        Fuel -= amount;
     }
-    public static bool IsDoubleDocked()
-    {
-        return _isDoubleDocked;
-    }
-    public static void SetLanded(bool isLanded)
-    {
-        _isLanded=isLanded;
-    }
-    public static bool IsGrounded()
-    {
-        return _isGrounded;
-    }
-    public static bool IsLanded()
-    {
-        return _isLanded;
-    }
-    public static float GetFuel()
-    {
-        return _fuel;
-    }
-    public static float GetDelay()
-    {
-        return _delay;
-    }
-    public static float GetTimer()
-    {
-        return _landedPosTimer;
-    }
-    public static void CountDelay(float time)
-    {
-        _delay -= time;
-    }
-    public static void DrainFuel(float amount)
-    {
-        _fuel -= amount;
-        Fuel.SetFuel(_fuel);
-    }
-    
+    public abstract void Undock();
 }

@@ -1,23 +1,3 @@
-{
-    "name": "Unity.TextMeshPro.Editor",
-    "references": [
-        "Unity.TextMeshPro"
-    ],
-    "includePlatforms": [
-        "Editor"
-    ],
-    "excludePlatforms": [],
-    "allowUnsafeCode": false,
-    "overrideReferences": false,
-    "precompiledReferences": [],
-    "autoReferenced": true,
-    "defineConstraints": [],
-    "versionDefines": [
-        {
-            "name": "com.unity.textcore",
-            "expression": "1.0.0-preview.0",
-            "define": "TEXTCORE_1_0_OR_NEWER"
-        }
-    ],
-    "noEngineReferences": false
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:4f6260c92f09c64deef21c375af74cbcad581f0392a6b7f9ecb67767fa890806
+size 545

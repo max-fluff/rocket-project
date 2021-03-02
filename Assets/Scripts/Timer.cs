@@ -3,13 +3,13 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-
+    [SerializeField] public PlayerState player;
     void Update()
     {
-        if (PlayerState.IsGrounded() && PlayerState.IsLanded())
+        if (player.IsGrounded && player.IsLanded)
         {
             GetComponent<Text>().enabled = true;
-            GetComponent<Text>().text = PlayerState.GetTimer().ToString("F1");
+            GetComponent<Text>().text = player.LandedPosTimer.ToString("F1");
         }
         else
         {
