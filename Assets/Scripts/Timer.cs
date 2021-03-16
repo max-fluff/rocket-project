@@ -1,19 +1,21 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    [SerializeField] public PlayerState player;
-    void Update()
+    public PlayerState player;
+
+    private void FixedUpdate()
     {
         if (player.IsGrounded && player.IsLanded)
         {
-            GetComponent<Text>().enabled = true;
-            GetComponent<Text>().text = player.LandedPosTimer.ToString("F1");
+            GetComponent<TextMeshProUGUI>().enabled = true;
+            GetComponent<TextMeshProUGUI>().text = player.LandedPosTimer.ToString("F1");
         }
         else
         {
-            GetComponent<Text>().enabled = false;
+            GetComponent<TextMeshProUGUI>().enabled = false;
         }
     }
 }

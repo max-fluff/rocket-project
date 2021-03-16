@@ -13,6 +13,11 @@ public class Fuel : MonoBehaviour
 
     private void Start()
     {
+        partFuel.minValue = player.fullFuel;
+        partFuel.maxValue = player.fullFuel*2;
+        partFuel.value = player.fullFuel*2;
+        mainFuel.maxValue = player.fullFuel;
+        mainFuel.value = player.fullFuel;
         if (player is PlayerSingleDockedState)
         {
             partFuel.enabled = false;
@@ -21,7 +26,7 @@ public class Fuel : MonoBehaviour
 
     public void FixedUpdate()
     {
-        if (player.Fuel >= 9)
+        if (player.Fuel >= player.fullFuel-1)
         {
             partFuel.value = player.Fuel;
         }

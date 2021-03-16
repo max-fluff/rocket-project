@@ -12,7 +12,7 @@ public class Part : MonoBehaviour
         GetComponent<Rigidbody>().useGravity=false;
     }
 
-    void Update()
+    private void Update()
     {
         if (playerState.IsUndocked) return;
         offset = 2 * (-player.transform.up);

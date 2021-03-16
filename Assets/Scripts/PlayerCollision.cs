@@ -1,11 +1,13 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerCollision : MonoBehaviour
 {
     private BoxCollider _coll;
     private Rigidbody _rb;
-    [SerializeField] public PlayerState Player;
+    [FormerlySerializedAs("Player")] [SerializeField] public PlayerState player;
+    public SceneManagement sceneManagement;
 
     private void Start()
     {
@@ -13,15 +15,15 @@ public class PlayerCollision : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collisionInfo)
     {
-        float inclination =Math.Abs(_rb.rotation.z - collisionInfo.gameObject.transform.rotation.z);
-        if ((Player.Speed>15||(Player.Speed>5&&inclination>=0.25)||inclination>=0.7)&&collisionInfo.collider.name != "Part1")
+        var inclination =Math.Abs(_rb.rotation.z - collisionInfo.gameObject.transform.rotation.z);
+        if ((player.Speed>15||(player.Speed>5&&inclination>=0.25)||inclination>=0.7))
         {
-            Debug.Log("YouFailed");
+            sceneManagement.SceneRestart();
             return;
         }
         if (collisionInfo.collider.name == "PlatformFinal"&&inclination<=0.25)
-            Player.IsLanded=true;
+            player.IsLanded=true;
         else
-            Player.IsLanded=false;
+            player.IsLanded=false;
     }
 }
