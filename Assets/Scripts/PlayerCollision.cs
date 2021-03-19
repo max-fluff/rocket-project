@@ -1,29 +1,18 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.Serialization;
+﻿using UnityEngine;
 
 public class PlayerCollision : MonoBehaviour
 {
-    private BoxCollider _coll;
-    private Rigidbody _rb;
-    [FormerlySerializedAs("Player")] [SerializeField] public PlayerState player;
+    [SerializeField] public PlayerState player;
     public SceneManagement sceneManagement;
 
-    private void Start()
+    private void OnTriggerEnter(Collider other)
     {
-        _rb=GetComponent<Rigidbody>();
-    }
-    private void OnCollisionEnter(Collision collisionInfo)
-    {
-        var inclination =Math.Abs(_rb.rotation.z - collisionInfo.gameObject.transform.rotation.z);
-        if ((player.Speed>15||(player.Speed>5&&inclination>=0.25)||inclination>=0.7))
+           
+        if (player.Speed>10)
         {
             sceneManagement.SceneRestart();
             return;
         }
-        if (collisionInfo.collider.name == "PlatformFinal"&&inclination<=0.25)
-            player.IsLanded=true;
-        else
-            player.IsLanded=false;
+        player.IsLanded = other.name == "PlatformFinal";
     }
 }

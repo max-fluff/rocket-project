@@ -6,8 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class SceneManagement : MonoBehaviour
 {
+    public GameObject fin;
+    public void LevelPassed()
+    {
+            fin.SetActive(true);
+    }
     public void SceneRestart()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     public void NextScene()

@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody _rb;
     private Vector3 _lastPos;
     private static float _force;
-    [FormerlySerializedAs("Player")] [SerializeField] public PlayerState player;
+     [SerializeField] public PlayerState player;
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
@@ -36,7 +36,6 @@ public class PlayerMovement : MonoBehaviour
             if (Math.Abs(Input.GetAxis("Horizontal")) > 0.001f)
             {
                 _rb.AddTorque(-transform.forward * (player.Turn * Input.GetAxis("Horizontal")));
-                player.SetTorqueEmission(Input.GetAxis("Horizontal"));
                 player.DrainFuel(1*Time.fixedDeltaTime);
             }
         }
@@ -44,7 +43,6 @@ public class PlayerMovement : MonoBehaviour
         {
             player.CountDelay(Time.fixedDeltaTime); 
             player.SetThrottleEmission(0);
-            player.SetTorqueEmission(0);
         }
 
         player.Speed = (_rb.position - _lastPos).magnitude/Time.fixedDeltaTime;
