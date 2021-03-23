@@ -24,9 +24,9 @@ public class Fuel : MonoBehaviour
         }
     }
 
-    public void FixedUpdate()
+    public void Update()
     {
-        if (player.Fuel >= player.fullFuel-1)
+        if (player.Fuel >= player.fullFuel)
         {
             partFuel.value = player.Fuel;
         }

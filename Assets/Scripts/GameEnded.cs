@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelPassed : MonoBehaviour
+public class GameEnded : MonoBehaviour
 {
     public SceneManagement sceneManager;
-    void LP()
+    void GE()
     {
-        sceneManager.NextScene();
+        sceneManager.MainMenu();
     }
 }

@@ -7,23 +7,30 @@ using UnityEngine.SceneManagement;
 public class SceneManagement : MonoBehaviour
 {
     public GameObject fin;
+    public PauseMenu pauseMenu;
     public void LevelPassed()
     {
-            fin.SetActive(true);
+         fin.SetActive(true);
     }
     public void SceneRestart()
     {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     public void NextScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
     public void MainMenu()
     {
-        Time.timeScale = 1f;
         SceneManager.LoadScene(0);
+        LoadScene(0); 
+    }
+
+    private void LoadScene(int buildIndex)
+    {
+        Time.timeScale = 1f;
+        if(pauseMenu!=null) pauseMenu.Resume();
+        SceneManager.LoadScene(buildIndex);
     }
     public void QuitGame()
     {

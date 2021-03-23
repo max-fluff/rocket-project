@@ -40,6 +40,10 @@ public abstract class PlayerState : MonoBehaviour
     public void DrainFuel(float amount)
     {
         Fuel -= amount;
+        if (Fuel > fullFuel + fullFuel * (IsUndocked ? 0 : 1))
+        {
+            Fuel = fullFuel + fullFuel * (IsUndocked ? 0 : 1);
+        }
     }
 
     public void SetThrottleEmission(float rate)

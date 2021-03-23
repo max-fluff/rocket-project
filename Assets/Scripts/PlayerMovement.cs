@@ -25,8 +25,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 _rb.AddRelativeForce(0, _force * Time.fixedDeltaTime, 0);
                 player.DrainFuel(4 * Time.deltaTime);
-                if (player.Fuel <= player.fullFuel && player.IsUndocked == false)
-                    player.Undock();
                 player.SetThrottleEmission(50);
             }
             else
@@ -38,6 +36,8 @@ public class PlayerMovement : MonoBehaviour
                 _rb.AddTorque(-transform.forward * (player.Turn * Input.GetAxis("Horizontal")));
                 player.DrainFuel(1*Time.fixedDeltaTime);
             }
+            if (player.Fuel <= player.fullFuel && player.IsUndocked == false)
+                player.Undock();
         }
         else
         {
