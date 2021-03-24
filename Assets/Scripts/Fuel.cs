@@ -2,14 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class Fuel : MonoBehaviour
 {
-    public Slider mainFuel;
-    public Slider partFuel;
-    [SerializeField] public PlayerState player;
+    [SerializeField] private Slider mainFuel;
+    [SerializeField] private Slider partFuel;
+    [SerializeField] private PlayerState player;
 
     private void Start()
     {

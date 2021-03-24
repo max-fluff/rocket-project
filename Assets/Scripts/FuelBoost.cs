@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Serialization;
+﻿using UnityEngine;
 
 public class FuelBoost : MonoBehaviour
 {
-    public PlayerState player;
-    public float amount=5f;
+    [SerializeField] private PlayerState player;
+    [SerializeField] private float amount=5f;
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name != "ColliderSingle" && other.gameObject.name != "ColliderDouble") return;

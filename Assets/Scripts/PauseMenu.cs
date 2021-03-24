@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
-    private static bool _isPaused=false;
-    public GameObject pauseMenuUI;
+    private static bool _isPaused;
+    [SerializeField] private GameObject pauseMenuUI;
+    [SerializeField] private Button resumeButton;
     void Update()
     {
         if (!Input.GetButtonDown("Cancel")) return;
@@ -30,5 +29,9 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         _isPaused = true;
+    }
+    private void Awake()
+    {
+        resumeButton.onClick.AddListener(Resume);
     }
 }

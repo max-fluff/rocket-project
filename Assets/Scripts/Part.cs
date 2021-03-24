@@ -2,9 +2,9 @@
 
 public class Part : MonoBehaviour
 {
-    [SerializeField] public PlayerState playerState;
-    public GameObject player;
-    public Vector3 offset;
+    [SerializeField] private PlayerState playerState;
+    [SerializeField] private GameObject player;
+    [SerializeField] private Vector3 offset;
     private void Start()
     {
         Physics.gravity=new Vector3(0, -2F, 0);

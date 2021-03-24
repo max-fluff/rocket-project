@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    public PlayerState player;
+    [SerializeField] private PlayerState player;
 
     private void FixedUpdate()
     {

@@ -1,6 +1,4 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 
 public abstract class PlayerState : MonoBehaviour
 {
@@ -13,8 +11,9 @@ public abstract class PlayerState : MonoBehaviour
     protected Rigidbody Rb { set; get; }
     public float Speed { set; get; }
     public float Turn { set; get; }
+    public bool isBlown { set; get; }
     public float fullFuel = 10;
-    public SceneManagement sceneManagement;
+    [SerializeField] private SceneManagement sceneManagement;
     protected ParticleSystem.EmissionModule ThrottleEmission;
     private void  Update()
     {

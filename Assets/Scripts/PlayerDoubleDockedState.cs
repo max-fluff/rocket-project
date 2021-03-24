@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerDoubleDockedState : PlayerState
 {
-    public GameObject ColliderDouble; 
-    public GameObject ColliderSingle; 
+    [SerializeField] private GameObject ColliderDouble; 
+    [SerializeField] private GameObject ColliderSingle; 
     private void Start()
     {
         LandedPosTimer = 3f;

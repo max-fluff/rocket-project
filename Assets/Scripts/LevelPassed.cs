@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class LevelPassed : MonoBehaviour
 {
-    public SceneManagement sceneManager;
+    [SerializeField] private SceneManagement sceneManager;
     void LP()
     {
         sceneManager.NextScene();

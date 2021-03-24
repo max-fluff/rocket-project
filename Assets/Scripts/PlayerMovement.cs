@@ -1,14 +1,12 @@
 ﻿using System;
-using UnityEditorInternal;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody _rb;
     private Vector3 _lastPos;
     private static float _force;
-     [SerializeField] public PlayerState player;
+    [SerializeField] public PlayerState player;
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
@@ -19,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     
     void FixedUpdate()
     {
-        if(player.Fuel > 0&&player.Delay<=0)
+        if(player.Fuel > 0&&player.Delay<=0&&!player.isBlown)
         {
             if (Input.GetButton("Fly"))
             {
