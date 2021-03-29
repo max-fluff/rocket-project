@@ -36,7 +36,7 @@ public class TrajectoryRender : MonoBehaviour
         lr.positionCount=res+1;
         Vector3[] Array = new Vector3[res+1];
         angle = Vector3.SignedAngle(player.GetComponent<Rigidbody>().velocity, (Vector3.right),Vector3.forward)*Mathf.Deg2Rad;
-        float maxDist=15f;
+        float maxDist=15f*Math.Sign(player.GetComponent<Rigidbody>().velocity.x);
         for (int i = 0; i <= res; i++)
         {
             float t =  (float) i / res;
