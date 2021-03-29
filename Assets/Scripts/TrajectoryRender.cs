@@ -7,17 +7,17 @@ using UnityEngine.U2D;
 
 public class TrajectoryRender : MonoBehaviour
 {
-    public GameObject player;
-    public LineRenderer lr;
-    public float velocity;
-    public float angle;
-    public int res;
+    [SerializeField] private GameObject player;
+    [SerializeField] private LineRenderer lr;
+    private float velocity;
+    private float angle;
+    private int res;
     private float g;
     void Start()
     {
         lr = GetComponent<LineRenderer>();
         g=Physics.gravity.y;
-        res = 20;
+        res = 30;
     }
     void FixedUpdate()
     {
@@ -50,7 +50,6 @@ public class TrajectoryRender : MonoBehaviour
         float y =-( x * Mathf.Tan(angle) -
                   (g * x * x) / (2 * player.GetComponent<PlayerState>().Speed * 
                                  Mathf.Cos(angle)* player.GetComponent<PlayerState>().Speed * Mathf.Cos(angle)));
-        if (Math.Abs(y) > 15) y = 15*Math.Sign(y);
         return new Vector3(x,y,0);
     }
 }
