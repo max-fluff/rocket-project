@@ -23,6 +23,5 @@ public class CameraMovement : MonoBehaviour
             yield return null;
         }
         shakeOffset = new Vector3(0,0,0);
-
     }
 }

@@ -11,8 +11,6 @@ public class PlayerMovement : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _force = 1000;
-        Physics.gravity = new Vector3(0, -1F, 0); 
-        _lastPos = _rb.position;
     }
     
     void FixedUpdate()
@@ -43,7 +41,6 @@ public class PlayerMovement : MonoBehaviour
             player.SetThrottleEmission(0);
         }
 
-        player.Speed = (_rb.position - _lastPos).magnitude/Time.fixedDeltaTime;
-        _lastPos = _rb.position;
+        player.Speed = GetComponent<Rigidbody>().velocity.magnitude;
     }
 }
